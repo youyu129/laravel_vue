@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\EventController;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');
+Route::get('/', [EventController::class,'index'])->name('home');
+Route::post('/store', [EventController::class,'store'])->name('store');
+Route::post('/update/{id}', [EventController::class,'update'])->name('update');
+Route::post('/{id}', [EventController::class,'destroy'])->name('destroy');
 
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
